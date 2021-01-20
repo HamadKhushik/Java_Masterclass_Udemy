@@ -6,16 +6,15 @@ package OOP;
  */
 public class Main {
     public static void main(String[] args) {
-        VipCustomer defaul_t = new VipCustomer();
-        VipCustomer sam = new VipCustomer("Sam", 123344);
-        VipCustomer samantha = new VipCustomer("Samantha", 98765, "samantha@myemail.com");
+        Dimension dimension = new Dimension(20, 20, 5);
+        Case theCase = new Case("220B", "Dell", "240", dimension);
+        Monitor theMonitor = new Monitor("27inch Beast", "Acer", 27, new Resolution(2540, 1440));
+        Motherboard theMotherboard = new Motherboard("BJ-200", "Asus", 4, 6, "v2.44");
 
-        System.out.println("name " + defaul_t.getName() + ", credit limit " + defaul_t.getCreditLimit() + ", " +
-                "email " + defaul_t.getEmail());
-        System.out.println("name " + sam.getName() + ", credit limit " + sam.getCreditLimit() + ", " +
-                "email " + sam.getEmail());
-        System.out.println("name " + samantha.getName() + ", credit limit " + samantha.getCreditLimit() + ", " +
-                "email " + samantha.getEmail());
+        PC thePC = new PC(theCase, theMonitor, theMotherboard);
+        thePC.getMonitor().drawPixelAt(1500, 1200, "red");
+        thePC.getMotherboard().loadProgram("Windows 1.0");
+        thePC.getTheCase().pressPowerButton();
     }
 
 }
