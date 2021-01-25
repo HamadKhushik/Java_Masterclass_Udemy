@@ -5,6 +5,7 @@ package OOP.billsburgers;
  * @project Java_Masterclass
  * <p>
  * Exercise - design and implement the basic application for a fictitious burger shop
+ * Associated classes HealthyBurger and Deluxe Burger
  */
 public class Burger {
 
@@ -12,73 +13,93 @@ public class Burger {
     private String breadRollType;
     private String meat;
     private double price;
-    private String add1 = null;
-    private String add2 = null;
-    private String add3 = null;
-    private String add4 = null;
-    private int itemsAdded;
 
-    public int getItemsAdded() {
-        return itemsAdded;
-    }
+    private String addition1Name;
+    private double addition1Price;
+    private String addition2Name;
+    private double addition2Price;
+    private String addition3Name;
+    private double addition3Price;
+    private String addition4Name;
+    private double addition4Price;
 
-    public Burger(String name, String breadRollType, String meat) {
-        itemsAdded = 0;
+    public Burger(String name, String breadRollType, String meat, double price) {
+
         this.name = name;
         this.breadRollType = breadRollType;
         this.meat = meat;
-        switch (meat) {
-            case "chicken":
-                price = 2.1;
-            case "lamb":
-                price = 3.0;
-            case "vegetable":
-                price = 2.0;
-            default:
-                price = 1.0;
-        }
-
+        this.price = price;
 
     }
 
-    public double addItem(String item) {
-        if (itemsAdded >= 4) {
-            System.out.println(itemsAdded + " items already added, unable to add any more items");
-            return price;
+    public void burgerAddition1(String item, double itemPrice) {
+        this.addition1Name = item;
+        this.addition1Price = itemPrice;
+    }
+
+    public void burgerAddition2(String item, double itemPrice) {
+        this.addition2Name = item;
+        this.addition2Price = itemPrice;
+    }
+
+    public void burgerAddition3(String item, double itemPrice) {
+        this.addition3Name = item;
+        this.addition3Price = itemPrice;
+    }
+
+    public void burgerAddition4(String item, double itemPrice) {
+        this.addition4Name = item;
+        this.addition4Price = itemPrice;
+    }
+
+    public double itemizedBurger() {
+        System.out.println(this.name + " on a " + this.breadRollType + " bread with " + meat +
+                " meat. Price is " + this.price);
+
+        if (addition1Name != null) {
+            System.out.println("Added " + this.addition1Name + " for an extra " + this.addition1Price);
+            price += addition1Price;
         }
-        switch (itemsAdded) {
-            case 0:
-                add1 = item;
-            case 1:
-                add2 = item;
-            case 2:
-                add3 = item;
-            case 4:
-                add4 = item;
+
+        if (addition2Name != null) {
+            System.out.println("Added " + this.addition2Name + " for an extra " + this.addition2Price);
+            price += addition2Price;
         }
-        price += 0.5;
+
+        if (addition3Name != null) {
+            System.out.println("Added " + this.addition3Name + " for an extra " + this.addition3Price);
+            price += addition3Price;
+        }
+
+        if (addition4Name != null) {
+            System.out.println("Added " + this.addition4Name + " for an extra " + this.addition4Price);
+            price += addition4Price;
+        }
+
         return price;
     }
 }
 
 
-class HealthyBurger extends Burger {
+class MainBurger {
+    public static void main(String[] args) {
+        Burger burger = new Burger("basic", "white", "chicken", 4.99);
+        burger.burgerAddition1("lettuce", 0.50);
+        burger.burgerAddition2("tomato", 0.70);
+        burger.burgerAddition3("Cucumber", 0.30);
+        System.out.println("Total price: " + burger.itemizedBurger());
+        System.out.println("*********************************************");
 
-    private String add5 = null;
-    private String add6 = null;
+        HealthyBurger healthyBurger = new HealthyBurger("Lamb", 3.99);
+        healthyBurger.healthAddition1("Cheese", 1.1);
+        healthyBurger.healthAddition2("Onion", 0.80);
+        System.out.println("Total Price is " + healthyBurger.itemizedBurger());
+        System.out.println("*********************************************");
 
-    public HealthyBurger(String meat) {
-        super("Healthy Burger", "rye bread roll", meat);
-    }
-
-    @Override
-    public double addItem(String item) {
-        super.addItem(item);
-        if (getItemsAdded() >= 4 && getItemsAdded() < 6) {
-            switch (getItemsAdded()) {
-                case
-            }
-
-        }
+        DeluxeBurger deluxeBurger = new DeluxeBurger();
+        deluxeBurger.burgerAddition1("lettuce", 0.50);
+        deluxeBurger.burgerAddition2("tomato", 0.70);
+        deluxeBurger.burgerAddition3("Cucumber", 0.30);
+        System.out.println("Total Price is " + deluxeBurger.itemizedBurger());
     }
 }
